@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSWRConfig } from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import Image from "next/image";
 
 interface CommentForm {
@@ -28,7 +28,7 @@ export default function PostItem({
 }: PostItemProps) {  
   const [isLike] = useMutation()
   const { mutate } = useSWRConfig()
-
+  
   const {
     register,
     handleSubmit,
@@ -61,7 +61,7 @@ export default function PostItem({
   const likeBtn = () => {
     isLike(`/api/posts/${id}/like`);
     mutate(
-      "/api/posts",
+      "/api/posts/nopagenation",
       (prev: any) => ({
         posts: prev.posts.map((post: any) =>
           post.id === id

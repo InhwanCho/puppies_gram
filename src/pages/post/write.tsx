@@ -21,7 +21,7 @@ export default function Write() {
     resetField,
     reset,
     formState: { isSubmitting, errors },
-  } = useForm<WriteForm>({ mode: 'onChange' });
+  } = useForm<WriteForm>({ mode: 'onSubmit' });
 
   const router = useRouter()
   const [write, { loading, data }] = useMutation()
@@ -65,8 +65,8 @@ export default function Write() {
         
 
         {/* 등록 버튼 */}
-        <Button text={isSubmitting ? "등록 중" : "등록"} isLarge isGradient isRounded />
-        <p className="text-red-400 mt-4 text-xl font-semibold">{errors.content?.message?.toString()}</p>
+        <Button text={isSubmitting ? "등록 중..." : "등록"} isLarge isGradient isRounded />
+        <p className="text-red-400 mt-4 text-lg text-center font-semibold">{errors.content?.message?.toString()}</p>
       </form>
     </Layout>
   );

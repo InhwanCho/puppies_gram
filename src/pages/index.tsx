@@ -18,8 +18,8 @@ interface PostWithSome extends Post {
 
 interface HomeResponse {
   ok: boolean;
-  posts: PostWithSome[]
-  pages:number;
+  posts: PostWithSome[];
+  pages: number;
 }
 
 export default function Home() {
@@ -30,25 +30,26 @@ export default function Home() {
     return `/api/posts?page=${pageIndex + 1}`;
   };
   const { data, setSize } = useSWRInfinite<HomeResponse>(getKey);
-  const posts = data ? data.map((item) => item.posts).flat() : [];  
+
+  const posts = data ? data.map((item) => item.posts).flat() : [];
   const page = useInfiniteScroll(); //pagenation
   useEffect(() => {
     setSize(page);
   }, [setSize, page]);
-  
-  return (
-    <>
-      <Layout hasTitleLogo >
-        <Head>
-          <title>PuppiesGram</title>
-        </Head>
-        
-        <ul className="">
-          {posts.map(post => (
-            <PostItem key={post.id} {...post} />
-          ))}
-        </ul>
-      </Layout>
-    </>
-  );
-}
+
+    return (
+      <>
+        <Layout hasTitleLogo >
+          <Head>
+            <title>PuppiesGram</title>
+          </Head>
+
+          <ul className="">
+            {posts.map(post => (
+              <PostItem key={post.id} {...post} />
+            ))}
+          </ul>
+        </Layout>
+      </>
+    );
+  }

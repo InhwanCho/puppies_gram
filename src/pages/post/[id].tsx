@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useSWR from "swr";
+import Image from "next/image";
 
 interface CommentWithSome extends Comment {
   author: {
@@ -74,12 +75,12 @@ export default function DetailPage() {
     )
     isLike(`/api/posts/${router.query.id}/like`);//백엔드로 바뀐 정보 보내기
   }
-  
+
   const onValid = async (form: CommentForm) => {
     if (loading) return;
     if (!data) return;
     await comment(`/api/posts/${router.query.id}/comments`, form);
-         
+
     mutate({
       ...data,
       post: {
@@ -131,7 +132,12 @@ export default function DetailPage() {
       <div className="w-full flex flex-col px-5 py-6 border-b ">
         <div className="flex items-center space-x-3 justify-between">
           <div className="flex items-center">
-            <div className="bg-slate-200 hover:cursor-pointer w-8 h-8 rounded-full items-center"></div>
+            {data?.post?.author?.avatar ? <Image src={`/images/avatar/${data?.post?.author?.avatar}.png`}
+              className="w-11 aspect-square rounded-full object-contain border"
+              priority={true}
+              width={100}
+              height={100} alt={"avatar"} /> : null}
+
             <div className="flex flex-col pl-3 items-center hover:cursor-pointer">
               <div className="flex gap-2 ">
                 <p>{data?.post?.author?.name}</p>
@@ -174,7 +180,13 @@ export default function DetailPage() {
 
               <div className="flex items-center space-x-3 justify-between">
                 <div className="flex items-center">
-                  <div className="bg-slate-200 hover:cursor-pointer w-8 h-8 rounded-full items-center"></div>
+                  {comment.author.avatar ? <Image src={`/images/avatar/${comment.author.avatar}.png`}
+                    className="w-11 aspect-square rounded-full object-contain border"
+                    priority={true}
+                    width={100}
+                    height={100} alt={"avatar"} /> : null}
+
+
                   <div className="flex flex-col pl-3 items-center hover:cursor-pointer">
                     <div className="flex gap-2 ">
                       <p>{comment.author.name}</p>

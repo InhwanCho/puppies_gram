@@ -21,7 +21,7 @@ export default function Button({ type,
     <button
       type={type || "submit"}
       className={cls(
-        "rounded-lg bg-amber-500/60 text-slate-900 p-2",
+        "rounded-lg bg-amber-500/60 hover:bg-amber-500/80 text-slate-900 p-2",
         isGradient ? "bg-gradient-to-r from-amber-50/70 to-orange-50/40" : "",
         isRounded ? "rounded-3xl" : "",
         width ? width : "w-full"

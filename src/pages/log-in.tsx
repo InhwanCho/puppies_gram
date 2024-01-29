@@ -28,7 +28,7 @@ export default function LogIn() {
     setError,
     reset,
     formState: { isSubmitting, errors },
-  } = useForm<LoginForm>();
+  } = useForm<LoginForm>({mode:'onSubmit'});
   const [login, { loading, data }] = useMutation<LoginMutationResult>()
   const onValid = (form: LoginForm) => {
     if (loading) return;
@@ -84,7 +84,7 @@ export default function LogIn() {
                   message: '이메일을 30글자 이하로 입력해주세요.'
                 }
               })}
-            width="w-2/5"
+            width="w-3/5"
           />
           <Input
             type="password"
@@ -103,11 +103,11 @@ export default function LogIn() {
                 message: '비밀번호를 20글자 이하로 입력해주세요.'
               }
             })}
-            width="w-2/5"
+            width="w-3/5"
           />
-          <Button text={isSubmitting ? "로그인 중" : "로그인"} width="w-2/5" />
-          <p className="text-red-400 text-center mt-4 text-xl font-semibold">{errors.email?.message?.toString()}</p>
-          <p className="text-red-400 text-center mt-4 text-xl font-semibold">{errors.password?.message?.toString()}</p>
+          <Button text={isSubmitting ? "로그인 중" : "로그인"} width="w-3/5" />
+          <p className="text-red-400 text-center mt-4 text-lg font-semibold">{errors.email?.message?.toString()}</p>
+          <p className="text-red-400 text-center mt-4 text-lg font-semibold">{errors.password?.message?.toString()}</p>
         </form>
         <div>
           <span className="mr-2 text-slate-700">아이디가 없다면?</span>

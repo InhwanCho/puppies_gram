@@ -1,14 +1,12 @@
 import { elapsedTime } from "@/libs/client/utils";
 import useMutation from "@/libs/client/useMutation";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import useSWR, { useSWRConfig } from "swr";
 import Image from "next/image";
 
 interface CommentForm {
-
+  comment: string;
 }
 
 interface PostItemProps {
@@ -25,10 +23,8 @@ interface PostItemProps {
 
 export default function PostItem({
   id, content, image, video, createdAt, authorId, author: { name, avatar }, _count: { likes, comments }, isLiked
-}: PostItemProps) {  
+}: PostItemProps) {
   const [isLike] = useMutation()
-  const { mutate } = useSWRConfig()
-  
   const {
     register,
     handleSubmit,
@@ -58,40 +54,25 @@ export default function PostItem({
     }
   }, [])
 
-  const likeBtn = () => {
-    isLike(`/api/posts/${id}/like`);
-    mutate(
-      "/api/posts/nopagenation",
-      (prev: any) => ({
-        posts: prev.posts.map((post: any) =>
-          post.id === id
-            ? {
-              ...post,
-              isLiked: !post.isLiked,
-              _count: {
-                ...post._count,
-                likes: post.isLiked
-                  ? post._count.likes - 1
-                  : post._count.likes + 1,
-              },
-            }
-            : post
-        ),
-      }),
-      false
-    );
-  }
+  const [like, setIslike] = useState(isLiked)
+  const [likeCount, setLikeCount] = useState(likes)
 
+  const likeBtn = async () => {
+    if (loading) return;
+    await isLike(`/api/posts/${id}/like`);
+    setIslike(!like)
+    setLikeCount(like ? likeCount - 1 : likeCount + 1)
+  };
 
   return (
     <li className="w-full flex flex-col px-5 py-4 border-b ">
       <Link href={`/user/${authorId}`}>
         <div className="flex items-center p-2 space-x-3 hover:cursor-pointer">
           <Image src={`/images/avatar/${avatar}.png`}
-          className="w-11 aspect-square rounded-full object-contain border"
-          priority={true}
-          width={100}
-          height={100} alt={"avatar"}/>  
+            className="w-11 aspect-square rounded-full object-contain border"
+            priority={true}
+            width={100}
+            height={100} alt={"avatar"} />
           <div className="flex flex-col ">
             <div className="flex gap-2">
               <p className="">{name} </p>
@@ -106,8 +87,7 @@ export default function PostItem({
           <div className="w-full h-[20rem] bg-slate-100"></div>
         </Link>
         <div className="flex space-x-4 my-2">
-
-          <div onClick={likeBtn} className={isLiked ? 'text-red-500 hover:text-red-400' : 'hover:text-slate-400 text-black flex'}>
+          <div onClick={likeBtn} className={like ? 'text-red-500 hover:text-red-400' : 'hover:text-slate-400 text-black flex'}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
             </svg>
@@ -122,13 +102,13 @@ export default function PostItem({
           </Link>
         </div>
         <div className="">
-          <p className="mb-1 select-none">좋아요 {likes}개</p>
+          <p className="mb-1 select-none">좋아요 {likeCount}개</p>
           <p className={`${isOpen ? null : 'paragraphStyle'}`} ref={ref}>
-            <span className="font-semibold text-slate-700/70 cursor-pointer ">{name} · </span><span className="">{content}</span></p>
+            <span className="font-semibold text-slate-700/70 cursor-pointer "><Link href={`/user/${authorId}`}>{name}</Link> · </span><span className="">{content}</span></p>
           {showReadMoreBtn && (
             <span className="text-slate-500 text-sm block" onClick={() => setIsOpen(!isOpen)} >{isOpen ? '숨기기' : '... 글 더보기'}</span>
           )}
-          <Link href={`/post/${id}`} >            
+          <Link href={`/post/${id}`} >
             <span className="mt-2 text-sm text-slate-500 cursor-pointer">{CommentCount ? '댓글 ' + CommentCount + '개 더보기' : ''}</span>
           </Link>
           <form className="relative" onSubmit={handleSubmit(onValid)}>

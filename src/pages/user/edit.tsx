@@ -18,17 +18,19 @@ export default function Edit() {
   const router = useRouter()
   const { user } = useUser()
 
-  const { register, handleSubmit, reset, formState: { errors }, } = useForm<EditForm>({
-    defaultValues: {
-      name: user?.name,
-      password: user?.password,
-    },
-    mode: 'onChange'
+  const { register, handleSubmit, reset, setValue, formState: { errors }, } = useForm<EditForm>({
+    mode: 'onSubmit'
   });
   const { register: avatarRegister, watch: avatarWatch } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: { avatar: user?.avatar || "dog" },
   });
+
+  useEffect(() => {
+    if (user?.name) setValue('name', user.name)
+    if (user?.password) setValue('password', user.password)
+  }, [setValue, user])
+
   const [edit, { loading, data }] = useMutation()
   const onValid = (form: EditForm) => {
     if (loading) return;

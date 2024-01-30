@@ -31,6 +31,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             id: true,
             comment :true,
             createdAt: true,
+            authorId: true,
             author: {
               select: {
                 name: true,

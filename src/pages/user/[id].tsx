@@ -56,7 +56,7 @@ export default function Profile() {
     }
   }, [data, router]);
   return (
-    <Layout pageTitle="My Activity" hasBackBtn>
+    <Layout pageTitle="Activities" hasBackBtn>
       <div className="w-full px-5 pb-10">
         {/* 유저 정보 영역 */}
         <div className="py-5 flex flex-col items-center">

@@ -9,6 +9,9 @@ import { useForm } from "react-hook-form";
 import useSWR from "swr";
 import Image from "next/image";
 import Link from "next/link";
+import cfimage from "@/libs/client/cfimage";
+import VideoPlayer from "@/components/videoplayer";
+
 
 interface CommentWithSome extends Comment {
   author: {
@@ -132,7 +135,7 @@ export default function DetailPage() {
 
     <Layout pageTitle="Post details page" hasBackBtn>
       <div className="w-full flex flex-col px-5 py-6 border-b ">
-        <div className="flex items-center space-x-3 justify-between">
+        <div className="flex items-center space-x-3 justify-between mb-4">
           <div className="flex items-center">
             {data?.post?.author?.avatar ? <Image src={`/images/avatar/${data?.post?.author?.avatar}.png`}
               className="w-11 aspect-square rounded-full object-contain border"
@@ -181,6 +184,12 @@ export default function DetailPage() {
               </div>) : null}
           </div>
         </div>
+        {/* 이미지 영역 */}
+        {data?.post?.image ? <Image alt="detailImg" property="true" width={550} height={700} src={cfimage({ imageUrl: data?.post?.image , type: 'public' })} className="w-full object-fill border rounded-md mb-6" /> : null}        
+        {/* 동영상 영역 */}
+        {data?.post?.video ? <VideoPlayer videoId={data?.post?.video} />  : null}
+          
+        {/* 컨텐츠 영역 */}
         <div className="my-3">{data?.post?.content}</div>
         <ul>
           {data?.post?.comments.map((comment) => (
@@ -196,7 +205,7 @@ export default function DetailPage() {
                   <div className="flex flex-col pl-3 items-center">
                     <div className="flex gap-2 ">
                       <Link href={`/user/${comment?.authorId}`}><p className="hover:cursor-pointer">{comment.author.name}</p></Link>
-                      <p>· {elapsedTime(comment.createdAt)}</p>                      
+                      <p>· {elapsedTime(comment.createdAt)}</p>
                     </div>
                   </div>
                 </div>
@@ -222,6 +231,7 @@ export default function DetailPage() {
                 ) : null}
 
               </div>
+
               <div className="py-3">{comment.comment}</div>
             </li>
           ))}

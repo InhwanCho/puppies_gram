@@ -6,19 +6,36 @@ import { withApiSession } from "@/libs/server/withApiSession";
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const {
-      body: { content, },
+      body: { content, video, imageId},
       session: {user}
     } = req;
-    const post = await client.post.create({
-      data: {
-        content,
-        author: {
-          connect: {
-            id: user?.id,
+    if(imageId){
+      const post = await client.post.create({
+        data: {
+          content,
+          image : imageId,
+          video,
+          author: {
+            connect: {
+              id: user?.id,
+            },
           },
         },
-      },
-    });    
+      });    
+    } else {
+      const post = await client.post.create({
+        data: {
+          content,
+          video,
+          author: {
+            connect: {
+              id: user?.id,
+            },
+          },
+        },
+      });   
+    }
+    
     return res.status(200).json({ ok: true });
   }
 }

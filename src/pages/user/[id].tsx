@@ -60,7 +60,7 @@ export default function Profile() {
       <div className="w-full px-5 pb-10">
         {/* 유저 정보 영역 */}
         <div className="py-5 flex flex-col items-center">
-          {user?.avatar ? (<Image src={`/images/avatar/${data?.user?.avatar}.png`}
+          {data?.user?.avatar ? (<Image src={`/images/avatar/${data?.user?.avatar}.png`}
             className="w-44 aspect-square rounded-full object-contain border"
             priority={true}
             width={200}

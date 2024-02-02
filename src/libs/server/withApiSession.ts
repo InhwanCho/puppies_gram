@@ -9,8 +9,9 @@ declare module "iron-session" {
 }
 
 const cookieOptions = {
-  cookieName: "mungstaSession",
-  password: process.env.COOKIE_PASSWORD!,
+  cookieName: "puppiesGramSession",
+  password: "njnjnjnjnjdcscamsklmlsadfkjkklj123123njknjknasdjkcnskcnsdjkcsndjkcsdnckjsdnjkcsndkcnsdjcksndjkcsdnkjnjk",
+  //process.env.COOKIE_PASSWORD!,
   cookieOptions: {
     secure: false,
   },

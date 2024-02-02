@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         refreshInterval:2000
       }}
     >
+      
       <Component {...pageProps} />
     </SWRConfig>
   )

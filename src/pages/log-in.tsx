@@ -84,7 +84,7 @@ export default function LogIn() {
                   message: '이메일을 30글자 이하로 입력해주세요.'
                 }
               })}
-            width="w-3/5"
+            width="w-2/5"
           />
           <Input
             type="password"
@@ -103,9 +103,9 @@ export default function LogIn() {
                 message: '비밀번호를 20글자 이하로 입력해주세요.'
               }
             })}
-            width="w-3/5"
+            width="w-2/5"
           />
-          <Button text={isSubmitting ? "로그인 중" : "로그인"} width="w-3/5" />
+          <Button text={isSubmitting ? "로그인 중" : "로그인"} width="w-2/5" />
           <p className="text-red-400 text-center mt-4 text-lg font-semibold">{errors.email?.message?.toString()}</p>
           <p className="text-red-400 text-center mt-4 text-lg font-semibold">{errors.password?.message?.toString()}</p>
         </form>

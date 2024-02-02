@@ -4,10 +4,14 @@ Instagram을 참고하여 코딩하였습니다.
 
 ## 실행
 
-1. .env 파일 설정
+1. `.env 파일` 설정
 
-```env:.env
+```file:.env
 COOKIE_PASSWORD:"비밀번호 설정 최소 30자"
+
+# CloudFlare(이미지 업로드) 사용 시 등록
+CF_ID:
+CF_TOKEN:
 ```
 
 2. 패키지 설치

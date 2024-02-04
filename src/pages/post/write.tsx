@@ -101,7 +101,7 @@ export default function Write() {
     <Layout pageTitle="Write" hasBackBtn>
       <form
         onSubmit={handleSubmit(onVaild)}
-        className="w-full px-5 pb-20 flex flex-col"
+        className="w-full px-5 pb-20 flex flex-col py-5"
       >
         {/* 이미지 첨부 영역 */}
         {photoPreview ? <div>

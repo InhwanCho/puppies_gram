@@ -36,7 +36,7 @@ export default function PostItem({
   } = useForm();
   const [comment, { loading }] = useMutation<CommentForm>()
   const [CommentCount, setCommentCount] = useState(comments)
-  const onValid = (form: CommentForm) => {
+  const onValid = (form: any) => {
     if (loading) return;
     setCommentCount(CommentCount + 1)
     comment(`/api/posts/${id}/comments`, form)
@@ -67,7 +67,7 @@ export default function PostItem({
   };
 
   return (
-    <li className="w-full flex flex-col px-5 py-4 border-b ">
+    <li className="w-full flex flex-col px-5 py-4 border-b border-slate-500">
       <Link href={`/user/${authorId}`}>        
         <div className="flex items-center p-2 space-x-3 hover:cursor-pointer">
 

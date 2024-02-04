@@ -34,7 +34,7 @@ const Layout = ({
       {/* 상단 헤더 */}
       <header
         className={cls(
-          "fixed top-0 z-10 max-w-xl w-full px-8 py-6 flex items-center bg-white",
+          "fixed top-0 z-10 max-w-xl w-full px-8 py-6 flex items-center bg-amber-100/70",
           hasTitleLogo ? "border-b border-slate-600/60" : ""
         )}
       >

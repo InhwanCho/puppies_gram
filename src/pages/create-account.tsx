@@ -23,7 +23,7 @@ interface CreateMutationResult{
 }
 
 export default function CreateAccount() {
-  const [create, {loading, data, error }] = mutationTest<CreateMutationResult>({url: `/api/users/create-account`,method: "POST"})
+  const [create, {loading, data }] = mutationTest<CreateMutationResult>({url: "/api/users/create-account",method: "POST"})
   const {
     register,
     handleSubmit,

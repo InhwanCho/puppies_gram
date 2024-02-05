@@ -9,10 +9,11 @@ interface MutationState<T> {
 type MutationResult<T> = [(url: string, data?: any) => void, MutationState<T>];
 
 interface methodsType {
+  url:string;
   method?: "POST"|"DELETE",
 }
 
-export default function useMutation<T = any>({ url ,method="POST" }: methodsType = {}): MutationResult<T> {
+export default function useMutation<T = any>({ url ,method="POST" }: methodsType): MutationResult<T> {
   const [state, setState] = useState<MutationState<T>>({
     loading: false,
     data: undefined,

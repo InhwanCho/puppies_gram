@@ -12,7 +12,7 @@ interface methodsType {
   method?: "POST"|"DELETE",
 }
 
-export default function useMutation<T = any>({ method }: methodsType = {}): MutationResult<T> {
+export default function useMutation<T = any>({ method="POST" }: methodsType = {}): MutationResult<T> {
   const [state, setState] = useState<MutationState<T>>({
     loading: false,
     data: undefined,

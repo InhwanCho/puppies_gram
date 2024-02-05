@@ -9,7 +9,6 @@ import Link from "next/link";
 import useMutation from "@/libs/client/useMutation";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import mutationTest from "@/libs/client/mutationTest";
 
 interface CreateForm {
   email: string;
@@ -23,7 +22,7 @@ interface CreateMutationResult{
 }
 
 export default function CreateAccount() {
-  const [create, {loading, data }] = mutationTest<CreateMutationResult>({url: "/api/users/create-account",method: "POST"})
+  const [create, {loading, data }] = useMutation<CreateMutationResult>({method: "POST"})
   const {
     register,
     handleSubmit,
@@ -32,9 +31,9 @@ export default function CreateAccount() {
     formState: { isSubmitting, errors },
   } = useForm<CreateForm>({ mode: 'onSubmit' });
   const router = useRouter()
-  const onValid = (form:any) => {  
+  const onValid = (form:CreateForm) => {  
     if(loading) return      
-    create(form);
+    create(`/api/users/create-account`,form);
     reset();
   }
   useEffect(()=>{

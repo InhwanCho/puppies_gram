@@ -185,10 +185,10 @@ export default function DetailPage() {
           </div>
         </div>
         {/* 이미지 영역 */}
-        {data?.post?.image ? <Image alt="detailImg" property="true" width={550} height={700} src={cfimage({ imageUrl: data?.post?.image , type: 'public' })} className="w-full object-fill border rounded-md mb-6" /> : null}        
+        {data?.post?.image ? <Image alt="detailImg" property="true" width={550} height={700} src={cfimage({ imageUrl: data?.post?.image, type: 'public' })} className="w-full object-fill border rounded-md mb-6" /> : null}
         {/* 동영상 영역 */}
-        {data?.post?.video ? <VideoPlayer videoId={data?.post?.video} />  : null}
-          
+        {data?.post?.video ? <VideoPlayer videoId={data?.post?.video} /> : null}
+
         {/* 컨텐츠 영역 */}
         <div className="my-3">{data?.post?.content}</div>
         <ul>

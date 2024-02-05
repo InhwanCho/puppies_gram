@@ -26,8 +26,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       errField: "password",
     });
   }
-  req.session.user = { id: user.id };
+  req.session.user = { id: +user.id! };
+  
   await req.session.save();
+  console.log(user.id)
 
   return res.status(200).json({ ok: true });
 }

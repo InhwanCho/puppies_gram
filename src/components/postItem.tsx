@@ -12,7 +12,7 @@ interface CommentForm {
 }
 
 interface PostItemProps {
-  id: number;
+  id: string;
   content: string;
   image?: string | null;
   video?: string | null;

@@ -5,7 +5,7 @@ export async function middleware(req: NextRequest) {
   
   if (!req.nextUrl.pathname.startsWith("/api")) {
     if (
-      // !req.cookies.has("puppiesGramSession") &&
+      !req.cookies.has("puppiesGramSession") &&
       !req.nextUrl.pathname.startsWith("/log-in") &&
       !req.nextUrl.pathname.startsWith("/create-account")
       // && !req.nextUrl.pathname.startsWith("/")

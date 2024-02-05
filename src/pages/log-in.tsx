@@ -27,20 +27,21 @@ export default function LogIn() {
     setError,
     reset,
     formState: { isSubmitting, errors },
-  } = useForm<LoginForm>({mode:'onSubmit'});
-  const [login, { loading, data }] = useMutation<LoginMutationResult>({method:"POST"})
+  } = useForm<LoginForm>({ mode: 'onSubmit' });
+  const [login, { loading, data }] = useMutation<LoginMutationResult>({ method: "POST" })
   const onValid = (form: LoginForm) => {
     if (loading) return;
-    login('/api/users/log-in',form)
+    login('/api/users/log-in', form)
     reset();
   }
   const router = useRouter()
   useEffect(() => {
     if (data?.ok) {
+      console.log('ok')
       router.push('/')
     }
-    
-    if (!data?.ok && data?.errField) {
+
+    if (!data?.ok && data?.errField) {      
       if (data?.errField === "email") {
         setError('email', { type: 'custom', message: data?.errMsg }, { shouldFocus: true })
       } else if (data?.errField === "password") {

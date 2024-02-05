@@ -45,8 +45,8 @@ export default function Home() {
           </Head>
 
           <ul className="">
-            {posts.map(post => (
-              <PostItem key={post.id} {...post} />
+            {posts.map((post,i) => (
+              <PostItem key={i} {...post} />
             ))}
           </ul>
         </Layout>

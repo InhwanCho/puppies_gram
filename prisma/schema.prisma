@@ -6,11 +6,10 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
-
-// mongodb -> enum 사용하기 @db.MediumText
 
 model User {
   id        Int       @id @default(autoincrement())
@@ -36,7 +35,11 @@ model Post {
   video     String?
   likes     Like[]
   comments  Comment[]
+
+  @@index([authorId])
 }
+
+
 
 model Like {
   id        Int      @id @default(autoincrement())
@@ -46,6 +49,9 @@ model Like {
   userId    Int
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    Int
+
+  @@index([userId])
+  @@index([postId])
 }
 
 model Comment {
@@ -57,4 +63,7 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    Int
   comment   String
+
+  @@index([authorId])
+  @@index([postId])
 }

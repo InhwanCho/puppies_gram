@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {  
-
+  
   if (!req.nextUrl.pathname.startsWith("/api")) {
     if (
       !req.cookies.has("puppiesGramSession") &&
@@ -10,7 +10,6 @@ export async function middleware(req: NextRequest) {
       !req.nextUrl.pathname.startsWith("/create-account")
       // && !req.nextUrl.pathname.startsWith("/")
     ) {
-      
       return NextResponse.redirect(new URL('/log-in',req.url));
       
     }

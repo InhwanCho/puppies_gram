@@ -12,14 +12,14 @@ interface methodsType {
   method?: "POST"|"DELETE",
 }
 
-export default function useMutation<T = any>({ method }: methodsType = {}): MutationResult<T> {
+export default function useMutation<T = any>({ url ,method="POST" }: methodsType = {}): MutationResult<T> {
   const [state, setState] = useState<MutationState<T>>({
     loading: false,
     data: undefined,
     error: undefined,
   });
 
-  function mutation(url:string, data?: any) {
+  function mutation(data?: any) {
     setState((prev) => ({ ...prev, loading: true }));
     fetch(url, {
       method:method,

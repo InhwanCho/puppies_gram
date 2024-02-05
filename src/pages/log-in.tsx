@@ -28,7 +28,7 @@ export default function LogIn() {
     reset,
     formState: { isSubmitting, errors },
   } = useForm<LoginForm>({mode:'onSubmit'});
-  const [login, { loading, data }] = useMutation<LoginMutationResult>()
+  const [login, { loading, data }] = useMutation<LoginMutationResult>({method:"POST"})
   const onValid = (form: LoginForm) => {
     if (loading) return;
     login(`/api/users/log-in`,form)

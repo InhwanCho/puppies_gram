@@ -249,7 +249,7 @@ export default function DetailPage() {
                 message: '댓글을 200글자 이하로 입력해주세요.'
               }
             })} type="text" className="bg-slate-100 h-12 text-sm w-full focus:outline-slate-300 rounded-md p-2 text-slate-600" placeholder='댓글 달기...' />
-            {watch('comment') && (<p className="absolute right-2 top-[15px] cursor-pointer text-blue-500 hover:text-blue-400 text-sm">게시</p>)}
+            {watch('comment') && (<p className="absolute right-2 top-[15px] cursor-pointer text-blue-500 hover:text-blue-400 text-sm" onClick={handleSubmit(onValid)}>게시</p>)}
             <p className="pt-4 text-red-500">{errors.comment?.message?.toString()}</p>
           </form>
         </div>

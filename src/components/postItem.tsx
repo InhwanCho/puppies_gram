@@ -94,8 +94,8 @@ export default function PostItem({
 
         <div className="">
           {/* 내용 */}
-          <p className={`${isOpen ? null : 'paragraphStyle'}`} ref={ref}>
-            <span className="font-semibold text-slate-700/70 cursor-pointer text-sm"><Link href={`/user/${authorId}`}>{name}</Link> · </span><Link href={`/post/${id}`}><span className="">{content}</span></Link></p>
+          <p className={`${isOpen ? null : 'paragraphStyle items-center'}`} ref={ref}>
+            <span className="font-semibold text-slate-700/70 items-center cursor-pointer text-sm"><Link href={`/user/${authorId}`}>{name}</Link> · </span><Link href={`/post/${id}`}><span className="">{content}</span></Link></p>
           {showReadMoreBtn && (
             <span className="text-slate-500 text-sm block" onClick={() => setIsOpen(!isOpen)} >{isOpen ? '숨기기' : '... 글 더보기'}</span>
           )}

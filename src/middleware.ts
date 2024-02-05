@@ -1,18 +1,22 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone();
-  
+export async function middleware(req: NextRequest) {  
 
-  if (!req.url.includes("/api")) {
+  if (!req.nextUrl.pathname.startsWith("/api")) {
     if (
       !req.cookies.has("puppiesGramSession") &&
-      !req.url.includes("/log-in") &&
-      !req.url.includes("/create-account") &&
-      !req.url.includes("/")
+      !req.nextUrl.pathname.startsWith("/log-in") &&
+      !req.nextUrl.pathname.startsWith("/create-account")
+      // && !req.nextUrl.pathname.startsWith("/")
     ) {
-      url.pathname = "/create-account";
-      return NextResponse.redirect(url);
+      
+      return NextResponse.redirect(new URL('/log-in',req.url));
+      
     }
   }
 }
+
+export const config = {
+  matcher: ['/((?!api|_next/static|favicon.ico).*)'],
+};

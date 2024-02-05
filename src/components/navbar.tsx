@@ -13,6 +13,7 @@ const NavBar = () => {
 
   const logOutClick = () => {
     logout("/api/users/log-out");
+    router.push('/log-in')
   };
 
 

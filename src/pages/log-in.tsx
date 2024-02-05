@@ -57,7 +57,7 @@ export default function LogIn() {
         <title>로그인</title>
       </Head>
       <div className="flex p-36 flex-col justify-center items-center h-full w-full m-auto">
-        <div className="p-5 bg-amber-300/30 rounded-full"><Image src={poddle} width='200' height='200' alt="" /></div>
+        <div className="p-5 bg-amber-300/30 rounded-full"><Image src={poddle} priority={true} width='200' height='200' alt="" /></div>
         <div className="pt-8">
           <h1 className="font-['Pacifico'] text-black text-3xl select-none">
             Log In

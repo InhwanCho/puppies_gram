@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import useMutation from "@/libs/client/useMutation";
 
-
 interface LoginForm {
   email: string;
   password: string;

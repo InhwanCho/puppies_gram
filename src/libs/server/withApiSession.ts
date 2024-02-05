@@ -9,26 +9,26 @@ declare module "iron-session" {
   }
 }
 
-// const cookieOptions = {
-//   cookieName: "puppiesGramSession",
-//   password: "njnjnjnjnjdcscamsklmlsadfkjkklj123123njknjknasdjkcnskcnsdjkcsndjkcsdnckjsdnjkcsndkcnsdjcksndjkcsdnkjnjk",
-//   //process.env.COOKIE_PASSWORD!,
-//   cookieOptions: {
-//     secure: false,
-//   },
-// };
-export const sessionOptions: IronSessionOptions = {
-  cookieName: 'puppiesGramSession',
+const cookieOptions = {
+  cookieName: "puppiesGramSession",
+  password: "njnjnjnjnjdcscamsklmlsadfkjkklj123123njknjknasdjkcnskcnsdjkcsndjkcsdnckjsdnjkcsndkcnsdjcksndjkcsdnkjnjk",
+  //process.env.COOKIE_PASSWORD!,
   cookieOptions: {
-    httpOnly: true,
-    maxAge: undefined,
-    path: '/',
-    sameSite: 'lax',
-    secure: true,
+    secure: false,
   },
-  password: process.env.COOKIE_PASSWORD as string,
 };
+// export const sessionOptions: IronSessionOptions = {
+//   cookieName: 'puppiesGramSession',
+//   cookieOptions: {
+//     httpOnly: true,
+//     maxAge: undefined,
+//     path: '/',
+//     sameSite: 'lax',
+//     secure: true,
+//   },
+//   password: process.env.COOKIE_PASSWORD as string,
+// };
 
 export function withApiSession(fn: any) {
-  return withIronSessionApiRoute(fn, sessionOptions);
+  return withIronSessionApiRoute(fn, cookieOptions);
 }

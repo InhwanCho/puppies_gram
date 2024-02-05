@@ -6,7 +6,7 @@ interface MutationState<T> {
   error?: object;
 }
 
-type MutationResult<T> = [(url: string, data?: any) => void, MutationState<T>];
+type MutationResult<T> = [(url: string|null, data?: any) => void, MutationState<T>];
 
 interface methodsType {
   method?: "POST"|"DELETE",

@@ -31,7 +31,7 @@ export default function LogIn() {
   const [login, { loading, data }] = useMutation<LoginMutationResult>({method:"POST"})
   const onValid = (form: LoginForm) => {
     if (loading) return;
-    login(typeof window === 'undefined'? null :'/api/users/log-in',form)
+    login('/api/users/log-in',form)
     reset();
   }
   const router = useRouter()

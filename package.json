@@ -1,5 +1,5 @@
 {
-  "name": "insta",
+  "name": "puppies_gram",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,12 @@
     "build": "prisma generate && next build ",
     "start": "next start",
     "lint": "next lint"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --quiet --fix ."
+    ]
   },
   "dependencies": {
     "@prisma/client": "^5.8.1",

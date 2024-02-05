@@ -10,9 +10,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (user) {
       req.session.destroy();
       return res.json({ ok: true, message: "로그아웃 완료" });
-    } else {
-      return res.json({ ok: false, message: "로그아웃 실패?" });
-    }
+    } 
   }
 }
 

@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {  
-  
+  // const session = await getIronSession(req, NextResponse.next(), sessionOptions);
   if (!req.nextUrl.pathname.startsWith("/api")) {
     if (
       !req.cookies.has("puppiesGramSession") &&

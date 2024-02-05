@@ -2,24 +2,29 @@ import { cls } from "@/libs/client/utils";
 import useMutation from "@/libs/client/useMutation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useUser from "@/libs/client/useUser";
+import { cache } from "swr/_internal";
+import useSWRMutation from "swr/mutation";
 
 
 const NavBar = () => {
-  const {user} = useUser()
+  const { user } = useUser()
   const router = useRouter();
   const [logout, { data }] = useMutation();
 
+  
+  
   const logOutClick = () => {
     logout("/api/users/log-out");
-    router.push('/log-in')
+    router.replace('/log-in')
+    cache.delete('/api/users/profile')
   };
-
 
   useEffect(() => {
     if (data?.ok) {
       router.push("/log-in");
+      console.log('logout')
     }
   }, [data, router]);
 

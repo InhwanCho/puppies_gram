@@ -32,10 +32,10 @@ export default function CreateAccount() {
     formState: { isSubmitting, errors },
   } = useForm<CreateForm>({ mode: 'onSubmit' });
   const router = useRouter()
-  const onValid = (form: CreateForm) => {  
+  const onValid = (form:any) => {  
     if(loading) return      
     create(form);
-    reset();    
+    reset();
   }
   useEffect(()=>{
     if (data?.ok){

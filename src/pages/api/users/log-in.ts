@@ -7,6 +7,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     body: { email, password },
   } = req;
+  console.log('나오는지 확인1')
   const user = await client.user.findUnique({
     where: {
       email,
@@ -27,9 +28,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
   }
   req.session.user = { id: +user.id! };
-  
+  console.log('나오는지 확인2')
   await req.session.save();
-  console.log(user.id)
+  console.log('나오는지 확인3')
 
   return res.status(200).json({ ok: true });
 }

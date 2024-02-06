@@ -29,7 +29,7 @@ export default function Home() {
     if (pageIndex + 1 > previousPageData.pages) return null;
     return `/api/posts?page=${pageIndex + 1}`;
   };
-  const { data, setSize } = useSWRInfinite<HomeResponse>(getKey);
+  const { data, setSize, error } = useSWRInfinite<HomeResponse>(getKey);
 
   const posts = data ? data.map((item) => item.posts).flat() : [];
   const page = useInfiniteScroll(); //pagenation
@@ -37,19 +37,19 @@ export default function Home() {
     setSize(page);
   }, [setSize, page]);
 
-    return (
-      <>
-        <Layout hasTitleLogo >
-          <Head>
-            <title>PuppiesGram</title>
-          </Head>
+  return (
+    <>
+      <Layout hasTitleLogo >
+        <Head>
+          <title>PuppiesGram</title>
+        </Head>
+        {!data && !error ? <div className="p-3">loading ...</div> : <ul className="">
+          {posts.map((post, i) => (
+            <PostItem key={i} {...post} />
+          ))}
+        </ul>}
 
-          <ul className="">
-            {posts.map((post,i) => (
-              <PostItem key={i} {...post} />
-            ))}
-          </ul>
-        </Layout>
-      </>
-    );
-  }
+      </Layout>
+    </>
+  );
+}

@@ -190,7 +190,7 @@ export default function DetailPage() {
         {data?.post?.video ? <VideoPlayer videoId={data?.post?.video} /> : null}
 
         {/* 컨텐츠 영역 */}
-        <div className="my-3">{data?.post?.content}</div>
+        <div className="my-3">{data?.post?.content ? data?.post?.content : 'Loading ...'}</div>
         <ul>
           {data?.post?.comments.map((comment) => (
             <li className="pt-5 pb-3 border-t-2 border-dashed first:border-t-slate-400 first:border-t-2 first:border-solid" key={comment.id}>

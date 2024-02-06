@@ -45,10 +45,10 @@ interface ProfileResponse {
 
 export default function Profile() {
   const router = useRouter()
-  const { data } = useSWR<ProfileResponse>(router.query.id ? `/api/users/${router.query.id}` : null);
+  const { data, error } = useSWR<ProfileResponse>(`/api/users/${router.query.id}`);
   const { user } = useUser()
   const [tab, setTab] = useState("writtenPosts");
-
+  if (!data && !error) <div>Loading ...</div>
   useEffect(() => {
     if (!data?.ok && data?.errMsg) {
       alert(data?.errMsg);
@@ -59,7 +59,7 @@ export default function Profile() {
     <Layout pageTitle="Activities" hasBackBtn>
       <div className="w-full px-5 pb-10">
         {/* 유저 정보 영역 */}
-        <div className="py-5 flex flex-col items-center">
+        <div className="my-5 flex flex-col items-center">
           {data?.user?.avatar ? (<Image src={`/images/avatar/${data?.user?.avatar}.png`}
             className="w-44 aspect-square rounded-full object-contain border"
             priority={true}
@@ -107,13 +107,13 @@ export default function Profile() {
 
 
         <ul>
-          {tab === "writtenPosts" ? (
-            data?.writtenPosts?.length as number > 0 ?
-              data?.writtenPosts.map((post: any) => (
-                <Myposts key={post.id} {...post} />
-              ))
-              : <div className="my-10 text-center text-sm text-slate-700">작성한 글이 없습니다</div>
-          ) : null}
+          {tab === "writtenPosts" ?
+            (!data && !error) ? <div className="my-10 text-center text-sm text-slate-700">loading ...</div> :
+              data?.writtenPosts?.length as number > 0 ? 
+              data?.writtenPosts.map((post: any) => (<Myposts key={post.id} {...post} />)) : 
+              <div className="my-10 text-center text-sm text-slate-700">작성한 글이 없습니다</div>
+            : null}
+          
           {tab === "writtenComments" ? (
             data?.writtenComments?.length as number > 0 ?
               data?.writtenComments.map((post: any) => (

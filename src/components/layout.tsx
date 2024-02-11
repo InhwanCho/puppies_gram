@@ -27,7 +27,7 @@ const Layout = ({
   };
 
   return (
-    <div className='relative max-w-xl mx-auto min-h-screen bg-white shadow-2xl'>
+    <div className='container relative max-w-xl mx-auto min-h-screen bg-white shadow-2xl'>
       <Head>
         <title>{pageTitle ? `${pageTitle}ㆍPuppiesGram` : "PuppiesGram"}</title>
       </Head>

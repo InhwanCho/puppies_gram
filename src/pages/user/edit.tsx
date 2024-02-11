@@ -84,14 +84,14 @@ export default function Edit() {
           {/* 유저 이름, 비밀번호 수정 */}
           <form onSubmit={handleSubmit(onValid)} className="w-full flex flex-col items-center space-y-8 mb-8">
             <label htmlFor="name" className="flex flex-col w-4/5 space-y-2">
-              <span className="font-semibold text-sm">이름 (아이디)</span>
+              <span className="font-semibold text-sm">이름</span>
               <input {...register("name", {
                 required: '이름을 입력해주세요',
                 maxLength: {
                   value: 10,
                   message: '이름을 10글자 이하로 입력해주세요.'
                 }
-              })} type="text" id="name" maxLength={10} className="p-2 border bg-white rounded-lg focus:outline-none" />
+              })} type="text" id="name" maxLength={10} className="p-2 border bg-white rounded-lg focus:outline-none hover:bg-slate-50" />
             </label>
             <label htmlFor="password" className="flex flex-col w-4/5 space-y-2">
               <span className="font-semibold text-sm">비밀번호</span>
@@ -106,7 +106,7 @@ export default function Edit() {
                   message: '비밀번호를 20글자 이하로 입력해주세요.'
                 }
               })}
-                type="password" id="password" maxLength={20} className="p-2 border bg-white rounded-lg focus:outline-none" />
+                type="password" id="password" maxLength={20} className="p-2 border bg-white rounded-lg focus:outline-none hover:bg-slate-50" />
             </label>
 
             <Button text={false ? "저장 중..." : "변경하기"}

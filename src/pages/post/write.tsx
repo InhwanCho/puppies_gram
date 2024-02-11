@@ -53,7 +53,10 @@ export default function Write() {
 
   useEffect(() => {
     if (data?.ok) {
-      router.push('/');
+      if(window.confirm('글을 등록하시겠습니까?')){
+        window.alert('게시글 등록 완료')
+        router.push('/');
+      }
     }
   }, [data, router])
 
@@ -126,7 +129,9 @@ export default function Write() {
             </svg>
             <p>해당 이미지 삭제하기</p>
           </button>
-          <div className="youtubeContainer rounded-md border"><Image alt="image" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" src={photoPreview} className="youtubeContaineriframe object-contain" /></div></div> : <label className="w-full mb-8 cursor-pointer text-gray-600 hover:border-amber-500/80 hover:text-amber-500/80 flex items-center justify-center border-2 border-dashed border-gray-300 h-[17rem] rounded-md">
+          {/* Image 첨부 영역 */}
+          <div className="youtubeContainer rounded-md border"><Image alt="image" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" src={photoPreview} className="youtubeContaineriframe object-contain" /></div></div> 
+          : <label className="w-full mb-8 cursor-pointer text-gray-600 hover:border-amber-500/80 hover:text-amber-500/80 flex items-center justify-center border-2 border-dashed border-gray-300 h-[8rem] md:h-[17rem] rounded-md">
           <svg
             className="h-14 w-14"
             stroke="currentColor"
@@ -170,7 +175,7 @@ export default function Write() {
             }
           })}
           minLength={1}
-          className="w-full h-40 p-3 mb-5 rounded-md bg-slate-100/80 placeholder:text-slate-500 focus:outline-none"
+          className="w-full h-32 md:h-40 p-3 mb-5 rounded-md bg-slate-100/80 placeholder:text-slate-500 focus:outline-none"
         />
 
 

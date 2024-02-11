@@ -37,8 +37,8 @@ export default function LogIn() {
   const router = useRouter()
   useEffect(() => {
     if (data?.ok) {
-      console.log('ok')
-      router.push('/')
+      window.alert('로그인 되었습니다.')      
+      router.replace('/')
     }
 
     if (!data?.ok && data?.errField) {      
@@ -56,7 +56,7 @@ export default function LogIn() {
       <Head>
         <title>로그인</title>
       </Head>
-      <div className="flex p-36 flex-col justify-center items-center h-full w-full m-auto">
+      <div className="flex py-16 px-0 lg:p-36 flex-col justify-center items-center h-full w-full m-auto">
         <div className="p-5 bg-amber-300/30 rounded-full"><Image src={poddle} priority={true} width='200' height='200' alt="" /></div>
         <div className="pt-8">
           <h1 className="font-['Pacifico'] text-black text-3xl select-none">
@@ -84,7 +84,7 @@ export default function LogIn() {
                   message: '이메일을 30글자 이하로 입력해주세요.'
                 }
               })}
-            width="w-2/5"
+            width="w-4/5 sm:w-2/5"
           />
           <Input
             type="password"
@@ -103,9 +103,9 @@ export default function LogIn() {
                 message: '비밀번호를 20글자 이하로 입력해주세요.'
               }
             })}
-            width="w-2/5"
+            width="w-4/5 sm:w-2/5"
           />
-          <Button text={isSubmitting ? "로그인 중" : "로그인"} width="w-2/5" />
+          <Button text={isSubmitting ? "로그인 중" : "로그인"} width="w-4/5 sm:w-2/5"/>
           <p className="text-red-400 text-center mt-4 text-lg font-semibold">{errors.email?.message?.toString()}</p>
           <p className="text-red-400 text-center mt-4 text-lg font-semibold">{errors.password?.message?.toString()}</p>
         </form>

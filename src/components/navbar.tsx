@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import useUser from "@/libs/client/useUser";
 import { cache } from "swr/_internal";
-import useSWRMutation from "swr/mutation";
 
 
 const NavBar = () => {
@@ -13,12 +12,15 @@ const NavBar = () => {
   const router = useRouter();
   const [logout, { data }] = useMutation();
 
-  
-  
+
+
   const logOutClick = () => {
-    logout("/api/users/log-out");
-    router.replace('/log-in')
-    cache.delete('/api/users/profile')
+    if(window.confirm('정말로 로그아웃 하시겠습니까?')){
+      logout("/api/users/log-out");
+      cache.delete('/api/users/profile')
+      window.alert('로그아웃 되었습니다.')
+      router.replace('/log-in')
+    }
   };
 
   useEffect(() => {

@@ -5,14 +5,15 @@ import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <SWRConfig
-      value={{
-        fetcher: (url: string) => fetch(url).then((response) => response.json()),
-        refreshInterval:2000
-      }}
-    >
-      
-      <Component {...pageProps} />
-    </SWRConfig>
+    // <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+      <SWRConfig
+        value={{
+          fetcher: (url: string) => fetch(url).then((response) => response.json()),
+          refreshInterval: 1000
+        }}
+      >
+        <Component {...pageProps} />
+      </SWRConfig>
+    // </SkeletonTheme>
   )
 }

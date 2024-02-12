@@ -24,7 +24,9 @@ export default function Myposts({
   const moveCommentPage = (id:number)=>{
     router.push(`/post/${id}`)
   }
+  
   return (
+    
     <li className="w-full flex flex-col p-6 border-b">
       {/* Post 상단 영역 */}
       <div className="w-full flex justify-between items-center mb-5">

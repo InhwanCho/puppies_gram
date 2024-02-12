@@ -94,8 +94,9 @@ export default function PostItem({
 
         <div className="">
           {/* 내용 */}
+          {/* userId == <span className="font-semibold text-slate-700/70 items-center cursor-pointer text-sm"><Link href={`/user/${authorId}`}>{name}</Link> · </span> */}
           <p className={`${isOpen ? null : 'paragraphStyle items-center'}`} ref={ref}>
-            <span className="font-semibold text-slate-700/70 items-center cursor-pointer text-sm"><Link href={`/user/${authorId}`}>{name}</Link> · </span><Link href={`/post/${id}`}><span className="">{content}</span></Link></p>
+            <Link href={`/post/${id}`}><span className="">{content}</span></Link></p>
           {showReadMoreBtn && (
             <span className="text-slate-500 text-sm block" onClick={() => setIsOpen(!isOpen)} >{isOpen ? '숨기기' : '... 글 더보기'}</span>
           )}
@@ -133,7 +134,7 @@ export default function PostItem({
                 message: '댓글을 200글자 이하로 입력해주세요.'
               }
             })} type="text" className="text-sm w-full focus:bg-slate-50 focus:outline-slate-200 focus:p-2 transition-all focus:rounded-md py-2 text-slate-500" placeholder='댓글 달기...' />
-            {watch('comment') && (<p className="absolute right-2 top-2 cursor-pointer text-blue-500 hover:text-blue-400 text-sm">게시</p>)}
+            {watch('comment') && (<p className="absolute right-2 top-2 cursor-pointer text-blue-500 hover:text-blue-400 text-sm" onClick={onValid}>게시</p>)}
             <p className="pt-4 text-red-500">{errors.comment?.message?.toString()}</p>
           </form>
         </div>

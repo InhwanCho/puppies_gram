@@ -1,6 +1,7 @@
 
 import Button from "@/components/button";
 import Layout from "@/components/layout";
+import MainSkeleton from "@/components/main-skeleton";
 import Videoinput from "@/components/videoinput";
 import VideoPlayer from "@/components/videoplayer";
 import useMutation from "@/libs/client/useMutation";
@@ -8,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+
 
 export interface WriteForm {
   content: string;
@@ -53,10 +55,8 @@ export default function Write() {
 
   useEffect(() => {
     if (data?.ok) {
-      if(window.confirm('글을 등록하시겠습니까?')){
-        window.alert('게시글 등록 완료')
-        router.push('/');
-      }
+      window.alert('게시글 등록 완료')
+      router.replace('/');
     }
   }, [data, router])
 
@@ -130,28 +130,28 @@ export default function Write() {
             <p>해당 이미지 삭제하기</p>
           </button>
           {/* Image 첨부 영역 */}
-          <div className="youtubeContainer rounded-md border"><Image alt="image" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" src={photoPreview} className="youtubeContaineriframe object-contain" /></div></div> 
+          <div className="youtubeContainer rounded-md border"><Image alt="image" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" src={photoPreview} className="youtubeContaineriframe object-contain" /></div></div>
           : <label className="w-full mb-8 cursor-pointer text-gray-600 hover:border-amber-500/80 hover:text-amber-500/80 flex items-center justify-center border-2 border-dashed border-gray-300 h-[8rem] md:h-[17rem] rounded-md">
-          <svg
-            className="h-14 w-14"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 48 48"
-            aria-hidden="true"
-          >
-            <path
-              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <input {...register('image')}
-            type="file"
-            className="hidden"
-            accept="image/*" />
-        </label>}
-
+            <svg
+              className="h-14 w-14"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+            >
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <input {...register('image')}
+              type="file"
+              className="hidden"
+              accept="image/*" />
+          </label>}
+        
         {/* 동영상 첨부 영역 */}
         {/* preview */}
         {videoPreview ? <VideoPlayer videoId={videoPreview} /> : null}

@@ -1,4 +1,5 @@
 import Layout from "@/components/layout";
+import MainSkeleton from "@/components/main-skeleton";
 import PostItem from "@/components/postItem";
 import { useInfiniteScroll } from "@/libs/client/useInfiniteScroll";
 import { Post, User } from "@prisma/client";
@@ -43,12 +44,13 @@ export default function Home() {
         <Head>
           <title>PuppiesGram</title>
         </Head>
-        {!data && !error ? <div className="p-3">loading ...</div> : <ul className="">
+        
+        {!data && !error ? <MainSkeleton count={3}/> : <ul className="">
           {posts.map((post, i) => (
             <PostItem key={i} {...post} />
           ))}
         </ul>}
-
+        
       </Layout>
     </>
   );

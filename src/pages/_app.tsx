@@ -6,7 +6,7 @@ import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <SkeletonTheme baseColor="#EAF1F4" highlightColor="#F4F4F4">
+    <SkeletonTheme baseColor="#EAF1F4" highlightColor="#FFFFFF">
       <SWRConfig
         value={{
           fetcher: (url: string) => fetch(url).then((response) => response.json()),

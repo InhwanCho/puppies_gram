@@ -6,7 +6,7 @@ import { Comment, Post, User } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import useSWR from "swr";
 import ActivitySkeleton from "@/components/activity-skeleton";
 
@@ -57,8 +57,6 @@ export default function Profile() {
   }, [data, router]);
   return (
     <Layout pageTitle="Activities" hasBackBtn>
-      <SkeletonTheme baseColor="#aaa18d" highlightColor="#6e6a5b">
-
         <div className="w-full px-5 pb-10">
           {/* 유저 정보 영역 */}
           <div className="my-5 flex flex-col items-center">
@@ -136,7 +134,6 @@ export default function Profile() {
 
           </ul>
         </div>
-      </SkeletonTheme>
     </Layout>
   );
 };

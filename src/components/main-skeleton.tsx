@@ -1,4 +1,4 @@
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export interface SkeletonProps {
@@ -7,7 +7,7 @@ export interface SkeletonProps {
 
 export default function MainSkeleton({ count = 1 }: SkeletonProps) {
   return (
-    <SkeletonTheme baseColor="#aaa18d" highlightColor="#6e6a5b">
+    <div>
       {new Array(count).fill(0).map((a, i) => (
         <div key={i} className="w-full flex flex-col px-5 py-4 border-b border-slate-500">
           <div className="flex w-full h-full p-2 rounded items-center mb-3">
@@ -30,8 +30,7 @@ export default function MainSkeleton({ count = 1 }: SkeletonProps) {
 
         </div>
       ))}
+    </div>
 
-
-    </SkeletonTheme>
   )
 }

@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { cls } from "@/libs/client/utils";
 import NavBar from "@/components/navbar";
+import useMutation from "@/libs/client/useMutation";
+import { cache } from "swr/_internal";
 
 interface LayoutProps {
   hasTitleLogo?: boolean;
@@ -26,6 +28,8 @@ const Layout = ({
     router.back();
   };
 
+  
+
   return (
     <div className='container relative max-w-xl mx-auto min-h-screen bg-white shadow-2xl'>
       <Head>
@@ -34,7 +38,7 @@ const Layout = ({
       {/* 상단 헤더 */}
       <header
         className={cls(
-          "fixed top-0 z-10 max-w-xl w-full px-8 py-6 flex items-center bg-amber-100/70",
+          "fixed top-0 z-10 max-w-xl w-full px-8 py-6 flex items-center bg-amber-100",
           hasTitleLogo ? "border-b border-slate-600/60" : ""
         )}
       >
@@ -57,6 +61,7 @@ const Layout = ({
             </svg>
           </button>
         ) : null}
+        
 
         {/* 타이틀 로고 */}
         {hasTitleLogo ? (
@@ -77,7 +82,7 @@ const Layout = ({
 
       {/* 하단바 */}
       <NavBar />
-    </div>
+    </div >
   );
 };
 
